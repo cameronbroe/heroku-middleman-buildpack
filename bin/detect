@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Work in BUILD_DIR
+cd $1
+
+# Check if a Gemfile exists
+if [ -f "Gemfile" ]; then
+	# Check if Gemfile contains middleman gem
+	HAS_MIDDLEMAN=$(grep -c "middleman" "Gemfile")
+	if [ $HAS_MIDDLEMAN -gt 0 ]; then
+		echo "Middleman"
+		exit 0
+	else
+		echo "no"
+		exit 1
+	fi
+else
+	echo "no"
+	exit 1
+fi
